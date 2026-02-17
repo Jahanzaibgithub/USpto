@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import '~swiper/css';
+@import '~swiper/css/navigation';
+@import '~swiper/css/pagination';
+@import '~swiper/css/scrollbar';
+.page-background {
+}
+
+
+/* Media query for smaller screens */
+
+@media (max-width: 768px) {
+    }

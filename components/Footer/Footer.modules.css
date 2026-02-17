@@ -1,0 +1,27 @@
+.footer {
+  display: flex;
+  flex-direction: row; /* desktop default */
+}
+
+/* Desktop order */
+.FooterSection1 {
+  order: 1;
+}
+.FooterSection2 {
+  order: 2;
+}
+
+/* Mobile (below 768px) */
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+  }
+
+  .FooterSection1 {
+    order: 2; /* show second */
+  }
+
+  .FooterSection2 {
+    order: 1; /* show first */
+  }
+}

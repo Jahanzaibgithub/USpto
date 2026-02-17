@@ -1,0 +1,75 @@
+/* Blue Sub-Navbar Styling */
+.Section3Dropdownmain{
+  font-family: Public Sans Web, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol;
+}
+.Section3Dropdown {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Section3Dropdown:hover {
+  background-color: #1e3a8a !important; 
+}
+
+/* Dropdown list */
+.Section3DropdownList {
+  display: none;
+}
+
+/* Show list on hover */
+.Section3Dropdown:hover .Section3DropdownList {
+  display: block;
+}
+
+.sub-nav-container {
+  background-color: #005ea2; /* USPTO Blue */
+  width: 100%;
+  font-family: sans-serif;
+}
+
+.sub-nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px; /* Adjust based on your layout */
+  margin: 0 auto;
+  height: 44px;
+}
+
+.sub-nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.sub-nav-item {
+  color: white;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  cursor: pointer;
+  height: 100%;
+  transition: background-color 0.2s;
+}
+
+.sub-nav-item:hover {
+  background-color: #004c82;
+}
+
+/* The dark highlight for 'Home' */
+.sub-nav-item.active {
+  background-color: #1a4480; 
+  font-weight: 500;
+}
+
+.sub-nav-right {
+  margin-left: auto;
+}
+
+.arrow {
+  margin-left: 4px;
+  font-size: 12px;
+}
