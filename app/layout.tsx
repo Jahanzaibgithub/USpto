@@ -5,7 +5,7 @@ import image from "../public/assets/faviconV2.png";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Trademark Center",
+  title: "United States Patent and Trademark Office",
   icons: {
     icon: "/assets/faviconV2.png", // ✅ use string path from public folder
   },

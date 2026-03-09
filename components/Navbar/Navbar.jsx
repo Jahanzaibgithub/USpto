@@ -1,138 +1,141 @@
 "use client";
-import React from "react";
-import MobileDropdown from "./MobileDropdown.jsx";
-
-import "./Navbar.css";
+import React, { useState } from "react";
+import { 
+  MagnifyingGlassIcon, 
+  Bars3Icon, 
+  LinkIcon, 
+  ChevronRightIcon, 
+  ChevronLeftIcon, 
+  XMarkIcon 
+} from '@heroicons/react/24/outline';
 
 const Navbar = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(null); // 'menu' | 'links' | 'search' | null
+
+  // --- Menu Data Structure ---
+  const menuData = {
+    patents: {
+      title: "Patents",
+      mobileList: ["Patents Home", "Get started", "Apply for patent", "Maintain your patent", "More Patents", "Patent practitioners", "Search Patents", "Patent Fees"],
+    },
+    trademarks: {
+      title: "Trademarks",
+      mobileList: ["Trademarks Home", "Get started", "Apply to register", "Maintain your trademark", "More Trademarks", "Trademark practitioners", "Search Trademarks", "Trademark Fees"],
+    },
+    ipPolicy: {
+      title: "IP Policy",
+      mobileList: ["IP Policy Home", "Patent policy", "Trademark policy", "Copyright policy", "Enforcement policy", "International affairs", "IP research", "Legislative resources"],
+    },
+    learning: {
+      title: "Learning and Resources",
+      mobileList: ["Resources Home", "By audience", "Getting started", "Publications & data", "Fees", "Training", "Operational status", "Glossary"],
+    }
+  };
+
+  const linksData = ["About Us", "Jobs", "Contact Us", "MyUSPTO"];
+
   return (
-    <>
-      {/* ===== Top Main Navbar (Desktop) ===== */}
-     <div className="SectionNavbarContainer1 hidden md:flex items-center justify-between bg-[#333333] px-6 py-3 text-white font-sans">
-  {/* Left Logo */}
-  <div className="flex items-center">
-    <div className="bg-white px-3 py-1 rounded-sm">
-      <span className="text-[#333333] font-bold text-2xl tracking-tighter">
-        uspto
-      </span>
-    </div>
-    <span className="text-sm pt-[20px] pr-[5px] pb-0 pl-[5px]">®</span>
-  </div>
+    <nav className="w-full font-sans antialiased relative">
+      {/* --- TOP SECTION (USPTO Logo & Desktop Search) --- */}
+      <div className="bg-[#333333]">
+        <div className="max-w-[1400px] mx-auto px-4 py-4 md:py-6 flex items-center justify-between">
+          {/* Logo Group */}
+          <div className="flex items-center">
+            <div className="bg-white px-2 py-1 md:px-3 md:py-2 rounded-md flex items-center shadow-sm">
+              <span className="text-[#333333] font-bold text-3xl md:text-5xl tracking-tighter leading-none">uspto</span>
+            </div>
+            <div className="hidden md:block ml-4 text-white pr-4">
+              <h3 className="font-bold text-lg lg:text-xl uppercase tracking-tight leading-tight">
+                United States <br /> Patent and Trademark Office
+              </h3>
+            </div>
+            <span className="text-white text-[20px] self-start mt-1 ml-1 opacity-80 pt-7">®</span>
+          </div>
 
-  {/* Right Menu */}
- <ul className="navbar-right">
-  {/* Patents */}
-  <li className="dropdown">
-    Patents ▾
-    <ul className="dropdown-menu divide-y-2 divide-gray-600  absolute
-    left-1/2 -translate-x-1/2
-    mt-2 overflow-y-hidden
-    bg-[#2f2f2f] text-[#ccc]
-    shadow-lg rounded-sm z-50 min-[900px]:left-auto
-    min-[900px]:right-0
-    min-[860px]:translate-x-0 right-0 max-h-100">
-      <li>Patent Center</li>
-      <li>Search with Patent Public Search</li>
-      <li>Check filing status</li>
-      <li>Search assignment</li>
-      <li>Record assignment</li>
-      <li>Order certified Patent documents</li>
-      <li>Patent Trial and Appeal Case Tracking System</li>
-      <li>Manual of Patent Examining Procedure</li>
-    </ul>
-  </li>
+          {/* Desktop Links & Search */}
+          <div className="flex flex-col items-end text-white">
+            <div className="hidden lg:flex items-center space-x-4 text-[15px] font-semibold mb-3">
+              {linksData.map(link => (
+                <a key={link} href="#" className="hover:text-gray-300">{link}</a>
+              ))}
+            </div>
+            <div className="hidden lg:flex w-[400px]">
+              <input type="text" placeholder="Search uspto.gov" className="w-full px-4 py-2 text-black text-sm focus:outline-none" />
+              <button className="bg-[#007196] px-4 text-white hover:bg-[#005a78]"><MagnifyingGlassIcon className="h-5 w-5" /></button>
+            </div>
 
-  {/* Trademarks */}
-  <li className="dropdown">
-    Trademarks ▾
-    <ul className="dropdown-menu divide-y-2 divide-gray-600
-     left-1/2 -translate-x-1/2
-    mt-2 overflow-y-hidden
-    bg-[#2f2f2f] text-[#ccc]
-    shadow-lg rounded-sm z-50 min-[900px]:left-auto
-    min-[900px]:right-0
-    min-[860px]:translate-x-0 right-0 max-h-100">
-      <li>Search trademarks</li>
-      <li>File trademark forms</li>
-      <li>View status, documents, and registration certificates</li>
-      <li>File Trademark Trial and Appeal Board forms</li>
-      <li>View Trademark Trial and Appeal Board proceedings</li>
-      <li>Search the Trademark Official Gazette</li>
-      <li>Record assignment</li>
-      <li>Search assignment</li>
-      <li>Order certified trademark documents</li>
-      <li>View the Trademark Manual of Examining Procedure</li>
-      <li>Search the ID Manual</li>
-    </ul>
-  </li>
-{/* Fees and payment  */}
- <li className="dropdown">
-    Fees and payment  ▾
-    <ul className="dropdown-menu divide-y-2 divide-gray-600">
-      <li>Fees Self-Service</li>
-      <li>Financial Manager</li>
-      <li>Patent Maintenance Fees Storefront</li>
-    </ul>
-  </li>
-  
-  {/*  Contact Us */}
- <li className="dropdown">
-    Contact Us  ▾
-    <ul className="dropdown-menu divide-y-2 divide-gray-600">
-      <li>Contact Us</li>
-      <li>Learning and resources</li>
-    </ul>
-  </li>
-  <li>MyUSPTO</li>
+            {/* Mobile Icon Buttons */}
+            <div className="relative flex lg:hidden space-x-6 items-center">
+              {/* MENU Button */}
+              <div className="relative">
+                <button 
+                  onClick={() => setIsMobileMenuOpen(isMobileMenuOpen === 'menu' ? null : 'menu')} 
+                  className="flex flex-col items-center"
+                >
+                  <Bars3Icon className="w-6 h-6 mb-1" />
+                  <span className="text-[10px] font-black tracking-widest">MENU</span>
+                </button>
 
-  <li style={{ color: "#f2a900", fontWeight: 600 }}>
-    Sign in
-  </li>
-</ul>
+                {/* Dropdown */}
+                {isMobileMenuOpen === 'menu' && (
+                  <div className="absolute top-full  transform -translate-x-1/2 w-64 max-w-[860px] bg-white border border-gray-300 rounded-md shadow-lg mt-2 z-50">
+                    {menuData.patents.mobileList.map((item, idx) => (
+                      <a 
+                        key={idx} 
+                        href="#" 
+                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                      >
+                        {item}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
 
-</div>
+              {/* LINKS Button */}
+              <div className="relative">
+                <button 
+                  onClick={() => setIsMobileMenuOpen(isMobileMenuOpen === 'links' ? null : 'links')} 
+                  className="flex flex-col items-center"
+                >
+                  <LinkIcon className="w-6 h-6 mb-1" />
+                  <span className="text-[10px] font-black tracking-widest">LINKS</span>
+                </button>
 
-      {/* ===== Mobile Navbar ===== */}
-   
+                {isMobileMenuOpen === 'links' && (
+                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-48 bg-white border border-gray-300 rounded-md shadow-lg mt-2 z-50">
+                    {linksData.map((item, idx) => (
+                      <a key={idx} href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">{item}</a>
+                    ))}
+                  </div>
+                )}
+              </div>
 
-    {/* Trademark Center */}
-    
-          <div className="SectionNavbarContainer2 hidden lg:block bg-[#eeeeee] py-4  px-3 md-px-6 border-b border-gray-300">
-      <h1 className="text-[ #1b1b1b] text-lg md-text-2xl font-bold tracking-tight">
-        Trademark Center
-      </h1>
-      </div>
-      {/* ===== Blue Sub-Navbar (The Image You Uploaded) ===== */}
-      <div className="SectionNavbarContainer3">
-     
-         <div className="md:hidden">
-        <MobileDropdown />
-      </div>
-       <div className="sub-nav-container hidden lg:block px-2 xlg:p-0">
-        <div className="sub-nav-content">
-          <ul className="sub-nav-list">
-            <li className="sub-nav-item active">Home</li>
-            <li className="sub-nav-item">Start application</li>
-            <li className="sub-nav-item">Drafts and docket</li>
-            <li className="sub-nav-item">Sponsorship tool</li>
-            <li className="sub-nav-item dropdown">
-              Manage trademarks <span className="arrow">▾</span>
-            </li>
-          </ul>
-          <div className="sub-nav-right">
-            <span className="sub-nav-item dropdown">
-              Help <span className="arrow">▾</span>
-            </span>
+              {/* SEARCH Button */}
+              <div className="relative">
+                <button 
+                  onClick={() => setIsMobileMenuOpen(isMobileMenuOpen === 'search' ? null : 'search')} 
+                  className="flex flex-col items-center"
+                >
+                  <MagnifyingGlassIcon className="w-6 h-6 mb-1" />
+                  <span className="text-[10px] font-black tracking-widest">SEARCH</span>
+                </button>
+
+                {isMobileMenuOpen === 'search' && (
+                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-64 bg-white border border-gray-300 rounded-md shadow-lg mt-2 z-50 p-2">
+                    <input 
+                      type="text" 
+                      placeholder="Search uspto.gov" 
+                      className="w-full px-3 py-2 border rounded-md focus:outline-none"
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
-          <div className="SectionNavbarContainer2 block lg:hidden bg-[#eeeeee] py-4  px-3 md-px-6 border-b border-gray-300">
-      <h1 className="text-[ #1b1b1b] text-lg md-text-2xl font-bold tracking-tight">
-        Trademark Center
-      </h1>
-      </div>
-      </div>
-    </>
+    </nav>
   );
 };
 

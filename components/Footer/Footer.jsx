@@ -47,10 +47,14 @@ const UsptoFooter = () => {
                 placeholder="your@email.com" 
                 className="flex-1 p-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
               />
-              <button className="bg-[#0066b2] text-white px-6 py-2 font-bold hover:bg-blue-800 transition-colors">
+              <a href="#" className="bg-[#0066b2] text-white px-6 py-2 font-bold hover:bg-yellow-400 hover:text-black transition-all duration-300">
                 Subscribe
-              </button>
+              </a>
             </div>
+             <div className="flex flex-col gap-2 pt-2">
+                <a href="#" className="hover:underline font-bold">Legal@usapto.com</a>
+                <a href="#" className="hover:underline font-bold">(512) 222-9449</a>
+              </div>
           </div>
         </div>
       </div>
